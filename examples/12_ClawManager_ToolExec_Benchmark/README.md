@@ -1,5 +1,7 @@
 # ClawManager Tool-Execution Benchmark
 
+> [中文版](README.zh-CN.md)
+
 This inverts the [Edge-Agentic benchmark](../11_Edge_Agentic_Example/README.md) (see
 also `docs/load_generator/DESIGN.md`, "AgenticInferenceStrategy"): Edge-Agentic
 replays a fixed conversation trajectory against a **real LLM endpoint**, with
@@ -92,7 +94,7 @@ Two trajectory datasets are provided (`trajectories/`):
 Both use the same JSONL schema as `AgenticInferenceDataset`
 (`conversation_id`/`turn`/`role`/`content`/`system`/`tool_calls`/`tool_results`).
 Unlike Edge-Agentic, the `tool_results` values here are advisory only — they
-document the *expected* result for a human reading the file, but are never
+document the _expected_ result for a human reading the file, but are never
 sent to the runtime, since the real runtime supplies real tool output.
 
 ## Interpreting the report
