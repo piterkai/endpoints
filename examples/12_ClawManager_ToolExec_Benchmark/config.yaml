@@ -1,0 +1,43 @@
+# Reference values for `inference-endpoint clawmanager-bench run --...` CLI flags
+# (ToolExecBenchConfig, see src/inference_endpoint/clawmanager_bench/config.py).
+# There is no YAML loader for this command yet — pass these as CLI flags, e.g.:
+#
+#   inference-endpoint clawmanager-bench run \
+#     --clawmanager-base-url https://clawmanager.example.internal \
+#     --admin-username admin --admin-password "$CLAWMANAGER_ADMIN_PASSWORD" \
+#     --num-instances 10 \
+#     --mock-llm-cluster-url http://cmbench-mock.default.svc.cluster.local:8080 \
+#     --trajectory-dataset-path examples/12_ClawManager_ToolExec_Benchmark/trajectories/shell_and_file_ops.jsonl \
+#     --cli-launch-template "openclaw chat --conversation {conversation_id} '{message}'" \
+#     --turn-marker-regex '\$\s*$' \
+#     --confirm-only-active-model
+
+# --- Required, no safe default (see README "Step 0") ---
+clawmanager_base_url: "https://TODO-your-clawmanager-deployment.example"
+admin_username: "TODO"
+admin_password: "TODO" # prefer passing via --admin-password from an env var, not committing it here
+mock_llm_cluster_url: "http://TODO-cluster-reachable-address:8080" # never localhost/127.0.0.1
+trajectory_dataset_path: "examples/12_ClawManager_ToolExec_Benchmark/trajectories/shell_and_file_ops.jsonl"
+cli_launch_template: "TODO — discover by hand first, see README Step 0"
+
+# --- Defaults that almost certainly need overriding for a real runtime ---
+turn_marker_regex: '\$\s*$' # naive bare shell-prompt default; override per your CLI's actual prompt
+shell_auth_mode: "header" # or "query-param", if header auth 401s on the shell WebSocket
+
+# --- Usually fine as-is ---
+num_instances: 1
+mock_llm_bind_host: "0.0.0.0"
+mock_llm_bind_port: 0
+shell_io_timeout_s: 60.0
+runtime_poll_interval_s: 5.0
+cpu_sampler: "runtime-poll" # "kubectl" is not available via this CLI — see README
+kubectl_namespace: null
+duration_s: null # unbounded — run until every trajectory completes
+teardown_after_run: true
+
+# Must be explicitly true: acknowledges that registering the mock LLM model
+# affects every instance on this ClawManager deployment resolving model=auto.
+confirm_only_active_model: false
+
+log_raw_requests_path: null # set to a path to dump raw request bodies for first-run inspection
+report_output_path: "clawmanager_bench_report.json"

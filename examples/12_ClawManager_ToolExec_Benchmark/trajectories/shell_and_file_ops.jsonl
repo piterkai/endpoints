@@ -1,0 +1,12 @@
+{"conversation_id": "shell_and_file_ops_1", "turn": 1, "role": "user", "content": "List the files in the repository, then write a short summary to summary.txt.", "system": "You are a coding agent working in a sandboxed repository checkout."}
+{"conversation_id": "shell_and_file_ops_1", "turn": 2, "role": "assistant", "tool_calls": [{"id": "call_1", "type": "function", "function": {"name": "shell_exec", "arguments": "{\"command\": [\"ls\", \"-la\"]}"}}]}
+{"conversation_id": "shell_and_file_ops_1", "turn": 3, "role": "tool", "tool_results": [{"tool_call_id": "call_1", "content": "expected: a directory listing (advisory only — the real runtime supplies the actual output; this value is never sent to it)"}]}
+{"conversation_id": "shell_and_file_ops_1", "turn": 4, "role": "assistant", "tool_calls": [{"id": "call_2", "type": "function", "function": {"name": "file_write", "arguments": "{\"path\": \"summary.txt\", \"content\": \"This repository contains the files listed above.\"}"}}]}
+{"conversation_id": "shell_and_file_ops_1", "turn": 5, "role": "tool", "tool_results": [{"tool_call_id": "call_2", "content": "expected: write confirmation (advisory only)"}]}
+{"conversation_id": "shell_and_file_ops_1", "turn": 6, "role": "assistant", "content": "Done — listed the repository contents and wrote a summary to summary.txt."}
+{"conversation_id": "shell_and_file_ops_2", "turn": 1, "role": "user", "content": "Search the repository for any file named README and read the first one you find.", "system": "You are a coding agent working in a sandboxed repository checkout."}
+{"conversation_id": "shell_and_file_ops_2", "turn": 2, "role": "assistant", "tool_calls": [{"id": "call_1", "type": "function", "function": {"name": "file_search", "arguments": "{\"root\": \".\", \"pattern\": \"README*\"}"}}]}
+{"conversation_id": "shell_and_file_ops_2", "turn": 3, "role": "tool", "tool_results": [{"tool_call_id": "call_1", "content": "expected: a list of matching paths (advisory only)"}]}
+{"conversation_id": "shell_and_file_ops_2", "turn": 4, "role": "assistant", "tool_calls": [{"id": "call_2", "type": "function", "function": {"name": "file_read", "arguments": "{\"path\": \"README.md\"}"}}]}
+{"conversation_id": "shell_and_file_ops_2", "turn": 5, "role": "tool", "tool_results": [{"tool_call_id": "call_2", "content": "expected: README contents (advisory only)"}]}
+{"conversation_id": "shell_and_file_ops_2", "turn": 6, "role": "assistant", "content": "Found and read the repository's README."}

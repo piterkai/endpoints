@@ -76,6 +76,12 @@ def launcher(
 # Benchmark subcommands — lazy-loaded from commands/benchmark/cli.py
 app.command("inference_endpoint.commands.benchmark.cli:benchmark_app", name="benchmark")
 
+# ClawManager tool-execution benchmark — lazy-loaded from clawmanager_bench/cli.py
+app.command(
+    "inference_endpoint.clawmanager_bench.cli:clawmanager_bench_app",
+    name="clawmanager-bench",
+)
+
 
 # --- Misc commands ---
 

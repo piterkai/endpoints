@@ -1340,6 +1340,9 @@ bfcl = [
     { name = "httpx", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
     { name = "soundfile", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
 ]
+clawmanager-bench = [
+    { name = "aiohttp", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-dev') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-performance') or (sys_platform != 'darwin' and sys_platform != 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-test') or (sys_platform == 'darwin' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-dev') or (sys_platform == 'darwin' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-performance') or (sys_platform == 'darwin' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-test') or (sys_platform == 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-dev') or (sys_platform == 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-performance') or (sys_platform == 'linux' and extra == 'extra-18-inference-endpoint-bfcl' and extra == 'extra-18-inference-endpoint-test')" },
+]
 dev = [
     { name = "filelock", version = "3.25.2", source = { registry = "https://pypi.org/simple" }, marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
     { name = "line-profiler", marker = "(platform_machine == 'arm64' and sys_platform == 'darwin') or (platform_machine == 'x86_64' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
@@ -1379,6 +1382,7 @@ test = [
 
 [package.metadata]
 requires-dist = [
+    { name = "aiohttp", marker = "extra == 'clawmanager-bench'", specifier = "==3.14.1" },
     { name = "aiohttp", marker = "extra == 'test'", specifier = "==3.14.1" },
     { name = "bfcl-eval", marker = "extra == 'bfcl'", specifier = "==2026.3.23" },
     { name = "colorama", specifier = "==0.4.6" },
@@ -1435,7 +1439,7 @@ requires-dist = [
     { name = "virtualenv", marker = "extra == 'dev'", specifier = ">=20.36.1" },
     { name = "websocket-client", specifier = "==1.9.0" },
 ]
-provides-extras = ["sql", "dev", "test", "performance", "bfcl"]
+provides-extras = ["sql", "dev", "test", "performance", "clawmanager-bench", "bfcl"]
 
 [[package]]
 name = "inflect"
